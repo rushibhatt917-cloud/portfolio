@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rushi Bhatt — Data Analyst & Python Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#07070e;--surface:#0d0d18;--card:#111120;--border:#1e1e35;--accent:#6c63ff;--accent2:#e8547a;--accent3:#00d4aa;--accent4:#f7931a;--text:#eeeef5;--muted:#6b6b8a;--grad1:linear-gradient(135deg,#6c63ff,#e8547a);--grad2:linear-gradient(135deg,#00d4aa,#6c63ff);--grad3:linear-gradient(135deg,#e8547a,#f7931a);--grad4:linear-gradient(135deg,#6c63ff,#00d4aa);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;overflow-x:hidden;cursor:none;}
+#cur{width:10px;height:10px;background:var(--accent);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;}
+#curR{width:34px;height:34px;border:1.5px solid rgba(108,99,255,.5);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:all .18s ease;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(7,7,14,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.35rem;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-r{display:flex;gap:.5rem;align-items:center;}
+.navl{font-size:.72rem;color:var(--muted);text-decoration:none;padding:.38rem .85rem;border-radius:999px;border:1px solid transparent;transition:all .2s;text-transform:uppercase;letter-spacing:.5px;}
+.navl:hover{color:var(--text);border-color:var(--border);}
+
+/* CTA BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.7rem 1.5rem;border-radius:999px;font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;cursor:none;border:none;outline:none;text-decoration:none;position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s;}
+.btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.1);opacity:0;transition:opacity .2s;border-radius:inherit;}
+.btn:hover::after{opacity:1;}
+.btn:hover{transform:translateY(-2px);}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--grad1);color:#fff;box-shadow:0 4px 22px rgba(108,99,255,.35);}
+.btn-primary:hover{box-shadow:0 8px 32px rgba(108,99,255,.55);}
+.btn-teal{background:var(--grad2);color:#fff;box-shadow:0 4px 20px rgba(0,212,170,.25);}
+.btn-teal:hover{box-shadow:0 8px 30px rgba(0,212,170,.45);}
+.btn-red{background:var(--grad3);color:#fff;box-shadow:0 4px 20px rgba(232,84,122,.25);}
+.btn-red:hover{box-shadow:0 8px 30px rgba(232,84,122,.45);}
+.btn-gold{background:linear-gradient(135deg,#f7931a,#ffd700);color:#111;font-weight:800;box-shadow:0 4px 20px rgba(247,147,26,.3);}
+.btn-gold:hover{box-shadow:0 8px 30px rgba(247,147,26,.5);}
+.btn-outline{background:transparent;color:var(--accent);border:1.5px solid var(--accent);}
+.btn-outline:hover{background:rgba(108,99,255,.1);}
+.btn-ghost{background:rgba(255,255,255,.04);color:var(--text);border:1px solid var(--border);}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+.btn-lg{padding:.95rem 2.2rem;font-size:.95rem;}
+.btn-sm{padding:.42rem 1rem;font-size:.73rem;}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding:8rem 3rem 4rem;position:relative;overflow:hidden;}
+.grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(108,99,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(108,99,255,.04) 1px,transparent 1px);background-size:56px 56px;}
+.orb{position:absolute;border-radius:50%;pointer-events:none;}
+.orb1{top:-8%;left:-4%;width:680px;height:680px;background:radial-gradient(circle,rgba(108,99,255,.13) 0%,transparent 68%);}
+.orb2{bottom:-12%;right:-4%;width:520px;height:520px;background:radial-gradient(circle,rgba(232,84,122,.1) 0%,transparent 68%);}
+.orb3{top:35%;right:18%;width:300px;height:300px;background:radial-gradient(circle,rgba(0,212,170,.07) 0%,transparent 68%);}
+.hero-inner{position:relative;z-index:2;max-width:760px;}
+.badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(108,99,255,.1);border:1px solid rgba(108,99,255,.28);color:var(--accent);padding:.32rem .9rem;border-radius:999px;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.6rem;animation:fadeUp .6s ease both;}
+.bdot{width:6px;height:6px;border-radius:50%;background:var(--accent3);animation:blink 2s infinite;}
+h1{font-family:'Syne',sans-serif;font-size:clamp(3.2rem,7.5vw,6rem);font-weight:800;line-height:.95;letter-spacing:-3px;margin-bottom:1.6rem;animation:fadeUp .6s .1s ease both;}
+.h1g{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:.93rem;color:var(--muted);line-height:1.85;max-width:500px;margin-bottom:2.5rem;animation:fadeUp .6s .2s ease both;}
+.hero-ctas{display:flex;gap:.85rem;flex-wrap:wrap;animation:fadeUp .6s .3s ease both;}
+.hero-stats{display:flex;gap:3rem;margin-top:4rem;padding-top:2.5rem;border-top:1px solid var(--border);animation:fadeUp .6s .4s ease both;}
+.stn{font-family:'Syne',sans-serif;font-weight:800;font-size:2rem;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.stl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:.15rem;}
+
+/* SECTIONS */
+section{padding:5.5rem 3rem;}
+.stag-sec{font-size:.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:.8rem;display:flex;align-items:center;gap:.8rem;}
+.stag-sec::after{content:'';flex:1;height:1px;background:var(--border);max-width:80px;}
+h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);letter-spacing:-1.5px;margin-bottom:.8rem;line-height:1.05;}
+.sec-sub{color:var(--muted);font-size:.87rem;line-height:1.75;max-width:480px;margin-bottom:3rem;}
+
+/* ABOUT */
+#about{background:var(--surface);}
+.about-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:center;}
+.about-left{display:flex;flex-direction:column;align-items:center;gap:1.6rem;}
+.av-ring{position:relative;width:200px;height:200px;}
+.av-ring::before{content:'';position:absolute;inset:-10px;border-radius:50%;border:2px dashed rgba(108,99,255,.25);animation:spin 18s linear infinite;}
+.av-ring::after{content:'';position:absolute;inset:-22px;border-radius:50%;border:1px dashed rgba(232,84,122,.15);animation:spin 28s linear infinite reverse;}
+.av{width:200px;height:200px;border-radius:50%;background:var(--grad1);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:4.5rem;font-weight:800;color:#fff;box-shadow:0 0 60px rgba(108,99,255,.3);}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;max-width:240px;}
+.chip{padding:.3rem .75rem;border-radius:6px;font-size:.72rem;background:rgba(108,99,255,.1);border:1px solid rgba(108,99,255,.22);color:var(--accent);}
+.about-r p{color:var(--muted);font-size:.87rem;line-height:1.85;margin-bottom:.9rem;}
+.about-r p strong{color:var(--text);}
+.open-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,212,170,.08);border:1px solid rgba(0,212,170,.25);color:var(--accent3);padding:.38rem 1rem;border-radius:999px;font-size:.72rem;margin-bottom:1.2rem;}
+.gdot{width:7px;height:7px;border-radius:50%;background:var(--accent3);animation:blink 1.8s infinite;}
+.abtns{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:1.8rem;}
+
+/* PROJECTS */
+#projects{background:var(--bg);}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1.4rem;}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.8rem;display:flex;flex-direction:column;gap:1rem;position:relative;overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s;}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .22s;}
+.pc:hover{transform:translateY(-5px);box-shadow:0 18px 50px rgba(0,0,0,.4);}
+.pc:hover::before{opacity:1;}
+.c1::before{background:var(--grad1);}.c1:hover{border-color:rgba(108,99,255,.4);}
+.c2::before{background:var(--grad2);}.c2:hover{border-color:rgba(0,212,170,.35);}
+.c3::before{background:var(--grad3);}.c3:hover{border-color:rgba(232,84,122,.35);}
+.c4::before{background:linear-gradient(135deg,#f7931a,#ffd700);}.c4:hover{border-color:rgba(247,147,26,.35);}
+.c5::before{background:var(--grad4);}.c5:hover{border-color:rgba(0,212,170,.35);}
+.featured{grid-column:span 2;}
+@media(max-width:900px){.featured{grid-column:span 1;}}
+.ptop{display:flex;align-items:flex-start;justify-content:space-between;gap:.8rem;}
+.pico{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
+.ptyp{font-size:.63rem;text-transform:uppercase;letter-spacing:1px;padding:.22rem .65rem;border-radius:999px;background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border);white-space:nowrap;height:fit-content;}
+.ptit{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;line-height:1.25;margin-bottom:.2rem;}
+.pdesc{color:var(--muted);font-size:.8rem;line-height:1.78;flex:1;}
+.pins{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;}
+.pinsl{font-size:.63rem;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem;}
+.pinsr{font-size:.76rem;color:var(--muted);padding:.18rem 0;display:flex;align-items:flex-start;gap:.5rem;}
+.pinsr::before{content:'→';color:var(--accent3);flex-shrink:0;}
+.pstack{display:flex;gap:.35rem;flex-wrap:wrap;}
+.st{font-size:.68rem;padding:.22rem .6rem;border-radius:5px;background:rgba(108,99,255,.08);border:1px solid rgba(108,99,255,.18);color:var(--accent);}
+.st.t{background:rgba(0,212,170,.08);border-color:rgba(0,212,170,.2);color:var(--accent3);}
+.st.p{background:rgba(232,84,122,.08);border-color:rgba(232,84,122,.2);color:var(--accent2);}
+.st.g{background:rgba(247,147,26,.08);border-color:rgba(247,147,26,.2);color:var(--accent4);}
+.pbtns{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.2rem;}
+
+/* SKILLS */
+#skills{background:var(--surface);}
+.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;}
+.sgp{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;transition:border-color .2s;}
+.sgp:hover{border-color:rgba(108,99,255,.3);}
+.sgpt{font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.85rem;}
+.sitm{display:flex;flex-wrap:wrap;gap:.35rem;}
+.sc{font-size:.73rem;padding:.28rem .7rem;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);transition:all .15s;}
+.sc:hover{border-color:var(--accent);color:var(--accent);}
+
+/* CONTACT */
+#contact{background:var(--bg);}
+.cw{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.cctab{display:flex;flex-direction:column;gap:.7rem;}
+.clink{display:flex;align-items:center;gap:1rem;padding:.95rem 1.2rem;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.83rem;transition:all .2s;}
+.clink:hover{border-color:var(--accent);background:rgba(108,99,255,.06);}
+.cico{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.cn{font-size:.78rem;margin-bottom:.18rem;color:var(--text);}
+.cv{font-size:.72rem;color:var(--muted);}
+
+footer{background:var(--surface);border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.ft{color:var(--muted);font-size:.75rem;}
+.fr{display:flex;gap:.5rem;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fi{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease;}
+.fi.vis{opacity:1;transform:none;}
+@media(max-width:900px){nav{padding:1rem 1.5rem;}section{padding:4rem 1.5rem;}#hero{padding:7rem 1.5rem 3rem;}.about-wrap,.cw{grid-template-columns:1fr;}.hero-stats{gap:2rem;}footer{flex-direction:column;align-items:flex-start;}}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="curR"></div>
+
+<nav>
+  <div class="logo">RB.</div>
+  <div class="nav-r">
+    <a href="#about" class="navl">About</a>
+    <a href="#projects" class="navl">Projects</a>
+    <a href="#skills" class="navl">Skills</a>
+    <a href="#contact" class="navl">Contact</a>
+    <a href="https://github.com/rushibhatt917-cloud" target="_blank" class="btn btn-primary btn-sm">GitHub ↗</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="grid-lines"></div>
+  <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+  <div class="hero-inner">
+    <div class="badge"><span class="bdot"></span> Open to Data Analyst Roles · Immediate Joiner</div>
+    <h1>Rushi<br/><span class="h1g">Bhatt</span></h1>
+    <p class="hero-sub">Python Developer &amp; Data Analyst — I've analyzed 9,800+ Netflix movies, built a hackathon-winning inventory app, and turned healthcare SQL data into actionable dashboards.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-primary btn-lg">View My Projects →</a>
+      <a href="mailto:rushibhatt917@gmail.com" class="btn btn-teal btn-lg">📧 Hire Me</a>
+      <a href="https://linkedin.com/in/rushi-bhatt-99a120265" target="_blank" class="btn btn-ghost btn-lg">LinkedIn ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stn">5</div><div class="stl">Real Projects</div></div>
+      <div><div class="stn">9,800+</div><div class="stl">Movies Analyzed</div></div>
+      <div><div class="stn">120+</div><div class="stl">Products in DigiStock</div></div>
+      <div><div class="stn">2026</div><div class="stl">Odoo Hackathon</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-wrap">
+    <div class="about-left fi">
+      <div class="av-ring"><div class="av">R</div></div>
+      <div class="chips">
+        <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Power BI</span>
+        <span class="chip">Pandas</span><span class="chip">Seaborn</span><span class="chip">Odoo</span>
+        <span class="chip">Google Cloud</span><span class="chip">Jupyter</span>
+      </div>
+      <a href="https://linkedin.com/in/rushi-bhatt-99a120265" target="_blank" class="btn btn-teal" style="width:100%;justify-content:center;">Connect on LinkedIn ↗</a>
+      <a href="mailto:rushibhatt917@gmail.com" class="btn btn-primary" style="width:100%;justify-content:center;">📧 Email Me Directly</a>
+    </div>
+    <div class="about-r fi">
+      <div class="stag-sec">01 — About Me</div>
+      <h2>Turning Data Into <span style="background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Decisions</span></h2>
+      <div class="open-badge"><span class="gdot"></span> Actively looking — Immediate joiner</div>
+      <p>I'm <strong>Rushi Bhatt</strong> — a passionate Python Developer and Data Analyst with a proven ability to extract insights from complex datasets. I've worked across <strong>healthcare SQL analytics, Netflix content analysis, fast-food nutrition dashboards, and movie database queries</strong>.</p>
+      <p>I also <strong>led a team of 4 at the Odoo Hackathon 2026</strong>, building DigiStock — a real-time inventory management web app for clothing stores that replaces paper registers with live dashboards, automated stock tracking, and a full audit ledger.</p>
+      <p>I'm deepening my skills in Advanced Python, Machine Learning, and Data Storytelling. Ask me about Pandas, Power BI, or Market Basket Analysis!</p>
+      <div class="abtns">
+        <a href="https://github.com/rushibhatt917-cloud" target="_blank" class="btn btn-outline">GitHub ↗</a>
+        <a href="https://instagram.com/rushii.bhatt" target="_blank" class="btn btn-ghost">Instagram</a>
+        <a href="mailto:rushibhatt917@gmail.com" class="btn btn-primary">📬 Get In Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="stag-sec">02 — Projects</div>
+  <h2>All <span style="background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent">5 Repositories</span></h2>
+  <p class="sec-sub">Every card is a real GitHub repository — real data, real code, real analysis.</p>
+  <div class="pg">
+
+    <!-- DIGISTOCK — FEATURED -->
+    <div class="pc c2 featured fi">
+      <div class="ptop">
+        <div style="display:flex;align-items:center;gap:.9rem;">
+          <div class="pico" style="background:rgba(0,212,170,.12);border:1px solid rgba(0,212,170,.2);">👗</div>
+          <div>
+            <div class="ptit">DigiStock — Inventory Management App</div>
+            <div style="font-size:.71rem;color:var(--accent3);margin-top:.25rem;">🏆 Odoo Hackathon 2026 · Team Lead &amp; Developer</div>
+          </div>
+        </div>
+        <div class="ptyp">Hackathon · Full-Stack</div>
+      </div>
+      <p class="pdesc">A modular, real-time Inventory Management System for clothing stores — replacing paper registers and Excel sheets with a centralized web app. Features a live dashboard, receipt &amp; delivery management, internal stock transfers, adjustment logging, and a complete audit ledger across 120+ products in 8 store locations.</p>
+      <div class="pins">
+        <div class="pinsl">Key Features &amp; Impact</div>
+        <div class="pinsr">Live dashboard: total stock, low-stock alerts, pending receipts &amp; deliveries</div>
+        <div class="pinsr">120+ clothing products (Men's, Women's, Kids', Ethnic, Footwear…) across 8 sections</div>
+        <div class="pinsr">Vendor receipts auto-update stock; delivery orders auto-reduce — zero manual math</div>
+        <div class="pinsr">Full Stock Ledger — every movement permanently logged for audit trails</div>
+        <div class="pinsr">Reduces stock management from ~15 hrs/week to ~2 hrs/week</div>
+      </div>
+      <div class="pstack">
+        <span class="st t">JavaScript</span><span class="st t">HTML5</span><span class="st t">CSS3</span>
+        <span class="st">SQL</span><span class="st">GitHub Pages</span>
+      </div>
+      <div class="pbtns">
+        <a href="https://rushibhatt917-cloud.github.io/DigiStock-APP---Odoo--Hackathon/" target="_blank" class="btn btn-teal">🔗 Live Demo →</a>
+        <a href="https://github.com/rushibhatt917-cloud/DigiStock-APP---Odoo--Hackathon" target="_blank" class="btn btn-ghost btn-sm">View Repo ↗</a>
+        <span style="font-size:.7rem;color:var(--muted);align-self:center;">Login: manager@onestitch.com / password123</span>
+      </div>
+    </div>
+
+    <!-- NETFLIX -->
+    <div class="pc c1 fi">
+      <div class="ptop">
+        <div class="pico" style="background:rgba(108,99,255,.12);border:1px solid rgba(108,99,255,.2);">🎬</div>
+        <div class="ptyp">Python · EDA</div>
+      </div>
+      <div class="ptit">Netflix Movie Analysis</div>
+      <p class="pdesc">Analyzed 9,800+ Netflix movies from TMDB to answer 5 key business questions about content trends, genre dominance, language distribution, and audience preferences (2000–2024).</p>
+      <div class="pins">
+        <div class="pinsl">Key Insights</div>
+        <div class="pinsr">Drama is the #1 genre with 3,744 movies</div>
+        <div class="pinsr">Spider-Man: No Way Home scored peak popularity score of 5,083</div>
+        <div class="pinsr">2021 was peak production year with 714 movies</div>
+        <div class="pinsr">77% of content is English; Japanese is #2 at ~7%</div>
+      </div>
+      <div class="pstack">
+        <span class="st">Python</span><span class="st">Pandas</span><span class="st">NumPy</span>
+        <span class="st t">Matplotlib</span><span class="st t">Seaborn</span><span class="st">Jupyter</span>
+      </div>
+      <div class="pbtns">
+        <a href="https://github.com/rushibhatt917-cloud/Netflix-movie-analysis" target="_blank" class="btn btn-primary">View Project →</a>
+        <a href="https://github.com/rushibhatt917-cloud/Netflix-movie-analysis/blob/main/Netflix.ipynb" target="_blank" class="btn btn-ghost btn-sm">Notebook ↗</a>
+      </div>
+    </div>
+
+    <!-- HEALTHCARE SQL -->
+    <div class="pc c3 fi">
+      <div class="ptop">
+        <div class="pico" style="background:rgba(232,84,122,.12);border:1px solid rgba(232,84,122,.2);">🏥</div>
+        <div class="ptyp">SQL · Healthcare</div>
+      </div>
+      <div class="ptit">SQL Healthcare Analytics</div>
+      <p class="pdesc">First SQL data analysis project — querying a healthcare database with patient records and diagnosis data using SELECT, WHERE, and JOIN. Includes a Power BI dashboard and full presentation.</p>
+      <div class="pins">
+        <div class="pinsl">What I Did</div>
+        <div class="pinsr">Analyzed patient &amp; diagnosis data using JOIN queries</div>
+        <div class="pinsr">Built a Power BI dashboard for clinical insights</div>
+        <div class="pinsr">Wrote clean, well-commented SQL scripts</div>
+      </div>
+      <div class="pstack">
+        <span class="st p">SQL</span><span class="st p">MS SQL Server</span><span class="st">Power BI</span>
+      </div>
+      <div class="pbtns">
+        <a href="https://github.com/rushibhatt917-cloud/sql--Healthcare-project" target="_blank" class="btn btn-red">View Project →</a>
+        <a href="https://github.com/rushibhatt917-cloud/sql--Healthcare-project/blob/main/Medical%20project%20SQL%20Script.sql" target="_blank" class="btn btn-ghost btn-sm">SQL Script ↗</a>
+        <a href="https://github.com/rushibhatt917-cloud/sql--Healthcare-project/blob/main/Medical-Data-History-SQL-Analytics-Project.pptx" target="_blank" class="btn btn-ghost btn-sm">Slides ↗</a>
+      </div>
+    </div>
+
+    <!-- SQL MOVIES -->
+    <div class="pc c5 fi">
+      <div class="ptop">
+        <div class="pico" style="background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.18);">🎥</div>
+        <div class="ptyp">SQL · Analysis</div>
+      </div>
+      <div class="ptit">SQL Movie Database Analysis</div>
+      <p class="pdesc">SQL project querying a movies database to surface insights about directors, ratings, and box office performance — using advanced JOINs, subqueries, and aggregate functions.</p>
+      <div class="pins">
+        <div class="pinsl">Analysis Performed</div>
+        <div class="pinsr">Top directors ranked by movie count</div>
+        <div class="pinsr">Most bankable movies by revenue &amp; rating</div>
+        <div class="pinsr">Advanced subqueries &amp; aggregate functions</div>
+      </div>
+      <div class="pstack">
+        <span class="st t">SQL</span><span class="st">Data Analysis</span><span class="st">Problem Solving</span>
+      </div>
+      <div class="pbtns">
+        <a href="https://github.com/rushibhatt917-cloud/SQL-Movie-database-Analysis" target="_blank" class="btn btn-teal">View Project →</a>
+        <a href="https://github.com/rushibhatt917-cloud/SQL-Movie-database-Analysis/blob/main/SQL%20Script.sql" target="_blank" class="btn btn-ghost btn-sm">SQL Script ↗</a>
+      </div>
+    </div>
+
+    <!-- FAST FOOD -->
+    <div class="pc c4 fi">
+      <div class="ptop">
+        <div class="pico" style="background:rgba(247,147,26,.12);border:1px solid rgba(247,147,26,.2);">🍔</div>
+        <div class="ptyp">Power BI · Dashboard</div>
+      </div>
+      <div class="ptit">Fast Food Dietary Analysis</div>
+      <p class="pdesc">Diagnostic analysis of nutritional data across multiple fast-food chains — comparing calories, protein, sugar, and sodium to identify high-risk menu items and build an interactive dashboard.</p>
+      <div class="pins">
+        <div class="pinsl">Key Insights</div>
+        <div class="pinsr">Average calories per item: 532 kcal</div>
+        <div class="pinsr">Sodium levels exceed 50% of daily intake in most items</div>
+        <div class="pinsr">High-protein items consistently correlate with high calories</div>
+      </div>
+      <div class="pstack">
+        <span class="st g">Power BI</span><span class="st g">Excel</span><span class="st">SQL</span><span class="st">Data Visualization</span>
+      </div>
+      <div class="pbtns">
+        <a href="https://github.com/rushibhatt917-cloud/Fast-Food-Analysis" target="_blank" class="btn btn-gold">View Project →</a>
+        <a href="https://github.com/rushibhatt917-cloud/Fast-Food-Analysis/blob/main/Fast-Food-Dietary-Analysis.pptx" target="_blank" class="btn btn-ghost btn-sm">Slides ↗</a>
+      </div>
+    </div>
+
+  </div>
+  <div style="text-align:center;margin-top:2.8rem;">
+    <a href="https://github.com/rushibhatt917-cloud" target="_blank" class="btn btn-outline btn-lg">View All Repositories on GitHub ↗</a>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="stag-sec">03 — Tech Stack</div>
+  <h2>Skills &amp; <span style="background:var(--grad3);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Tools</span></h2>
+  <p class="sec-sub">Technologies I use to build, analyze, and ship real data projects.</p>
+  <div class="sg">
+    <div class="sgp fi"><div class="sgpt">🐍 Languages</div><div class="sitm"><span class="sc">Python 3</span><span class="sc">SQL</span><span class="sc">JavaScript</span><span class="sc">R</span><span class="sc">LaTeX</span></div></div>
+    <div class="sgp fi"><div class="sgpt">📦 Python Libraries</div><div class="sitm"><span class="sc">Pandas</span><span class="sc">NumPy</span><span class="sc">Matplotlib</span><span class="sc">Seaborn</span><span class="sc">scikit-learn</span></div></div>
+    <div class="sgp fi"><div class="sgpt">🗄️ Databases</div><div class="sitm"><span class="sc">MySQL</span><span class="sc">MS SQL Server</span><span class="sc">MongoDB</span><span class="sc">SQLite</span></div></div>
+    <div class="sgp fi"><div class="sgpt">📊 Visualization & BI</div><div class="sitm"><span class="sc">Power BI</span><span class="sc">Matplotlib</span><span class="sc">Seaborn</span><span class="sc">Jupyter</span></div></div>
+    <div class="sgp fi"><div class="sgpt">☁️ Cloud & DevOps</div><div class="sitm"><span class="sc">Google Cloud</span><span class="sc">GitHub Actions</span><span class="sc">GitHub Pages</span><span class="sc">Git</span></div></div>
+    <div class="sgp fi"><div class="sgpt">🧠 Concepts</div><div class="sitm"><span class="sc">EDA</span><span class="sc">Data Cleaning</span><span class="sc">Market Basket Analysis</span><span class="sc">Machine Learning</span><span class="sc">Data Storytelling</span></div></div>
+  </div>
+  <div style="text-align:center;margin-top:2.5rem;">
+    <a href="mailto:rushibhatt917@gmail.com" class="btn btn-primary btn-lg">📬 I'm Available — Contact Me Now</a>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="stag-sec">04 — Contact</div>
+  <div class="cw">
+    <div class="fi">
+      <h2>Let's <span style="background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Work Together</span></h2>
+      <p class="sec-sub">I'm actively looking for Data Analyst roles and open to collaborating on Python, data science, or open-source projects. Immediate joiner.</p>
+      <div class="cctab" style="flex-direction:column;gap:.7rem;">
+        <a href="mailto:rushibhatt917@gmail.com" class="btn btn-primary btn-lg">📧 Send Me an Email</a>
+        <a href="https://linkedin.com/in/rushi-bhatt-99a120265" target="_blank" class="btn btn-teal btn-lg">💼 LinkedIn Profile ↗</a>
+        <a href="https://github.com/rushibhatt917-cloud" target="_blank" class="btn btn-outline btn-lg">🐙 GitHub ↗</a>
+        <a href="https://instagram.com/rushii.bhatt" target="_blank" class="btn btn-ghost btn-lg">📸 Instagram</a>
+      </div>
+    </div>
+    <div class="fi">
+      <a href="mailto:rushibhatt917@gmail.com" class="clink">
+        <div class="cico" style="background:rgba(232,84,122,.1);border:1px solid rgba(232,84,122,.2);">📧</div>
+        <div><div class="cn">Email</div><div class="cv">rushibhatt917@gmail.com</div></div>
+      </a>
+      <a href="https://linkedin.com/in/rushi-bhatt-99a120265" target="_blank" class="clink">
+        <div class="cico" style="background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2);">💼</div>
+        <div><div class="cn">LinkedIn</div><div class="cv">rushi-bhatt-99a120265</div></div>
+      </a>
+      <a href="https://github.com/rushibhatt917-cloud" target="_blank" class="clink">
+        <div class="cico" style="background:rgba(108,99,255,.1);border:1px solid rgba(108,99,255,.2);">🐙</div>
+        <div><div class="cn">GitHub</div><div class="cv">rushibhatt917-cloud · 5 repositories</div></div>
+      </a>
+      <a href="https://instagram.com/rushii.bhatt" target="_blank" class="clink">
+        <div class="cico" style="background:rgba(232,84,122,.1);border:1px solid rgba(232,84,122,.2);">📸</div>
+        <div><div class="cn">Instagram</div><div class="cv">@rushii.bhatt</div></div>
+      </a>
+      <a href="https://rushibhatt917-cloud.github.io/DigiStock-APP---Odoo--Hackathon/" target="_blank" class="clink">
+        <div class="cico" style="background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2);">🌐</div>
+        <div><div class="cn">DigiStock Live App</div><div class="cv">Odoo Hackathon 2026</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft">© 2026 Rushi Bhatt · Data Analyst &amp; Python Developer · Immediate Joiner</div>
+  <div class="fr">
+    <a href="https://github.com/rushibhatt917-cloud" target="_blank" class="btn btn-ghost btn-sm">GitHub</a>
+    <a href="https://linkedin.com/in/rushi-bhatt-99a120265" target="_blank" class="btn btn-primary btn-sm">LinkedIn ↗</a>
+    <a href="mailto:rushibhatt917@gmail.com" class="btn btn-teal btn-sm">Email ↗</a>
+  </div>
+</footer>
+
+<script>
+const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function t(){cur.style.transform=`translate(${mx-5}px,${my-5}px)`;rx+=(mx-rx)*.13;ry+=(my-ry)*.13;curR.style.transform=`translate(${rx-17}px,${ry-17}px)`;requestAnimationFrame(t);})();
+document.querySelectorAll('a,.btn').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{curR.style.opacity='.9';curR.style.borderColor='var(--accent3)';curR.style.transform+=' scale(1.4)';});
+  el.addEventListener('mouseleave',()=>{curR.style.opacity='.5';curR.style.borderColor='rgba(108,99,255,.5)';});
+});
+const obs=new IntersectionObserver(es=>{es.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*90);});},{threshold:.1});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
