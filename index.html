@@ -9,14 +9,26 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 :root{
-  --bg:#060d1a;--surface:#0a1526;--card:#0d1c30;
-  --border:#112240;--border2:#1a3a6e;
-  --blue:#3b82f6;--blue2:#2563eb;
-  --text:#e2eeff;--muted:#4a6fa5;--soft:#2d5a9e;
+  --bg:#0e0608;
+  --surface:#130a0d;
+  --card:#180c10;
+  --border:#2a1018;
+  --border2:#4a1828;
+  --wine:#6b1428;
+  --wine2:#8b1a34;
+  --rose:#c4566a;
+  --rose-light:#e8b4be;
+  --gold:#c9a96e;
+  --gold-light:#e8d5b0;
+  --text:#f0e8ea;
+  --muted:#8a6870;
+  --soft:#5a3840;
+  --grad:linear-gradient(135deg,#6b1428,#8b1a34);
+  --grad-gold:linear-gradient(135deg,#c9a96e,#e8d5b0);
 }
 body{background:var(--bg);color:var(--text);font-family:'Lato',sans-serif;overflow-x:hidden;}
 
-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:1rem 5vw;display:flex;align-items:center;justify-content:space-between;background:rgba(6,13,26,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
